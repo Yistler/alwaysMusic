@@ -25,16 +25,33 @@ despues de server.js lo siguiente son parametros en la posicion 0 y 1 ya que pro
 */
 
 const pool = new Pool(config)
-//module.exports = pool;
+module.exports = pool;
 
 const registrarUsuario = async()=>{
-    const text = 
-    "INSERT INTO estudiantes (nombre, rut, curso, nivel) VALUES ($1,$2,$3,$4) RETURNING *";
-    const proceso = process.argv.slice(2);
-    const values = [proceso[1], proceso[2], proceso[3], proceso[4]];
-    const result = await pool.query(text, values);
-    console.info('Estudiante ' + proceso[1] + ' registrado con exito');
+    let client;
+    try{
+        client = await pool.connect();
+        try{
+            const text = "INSERT INTO estudiantes (nombre, rut, curso, nivel) VALUES ($1,$2,$3,$4) RETURNING *";
+            const proceso = process.argv.slice(2);
+            const values = [proceso[1], proceso[2], proceso[3], proceso[4]];
+            const result = await client.query(text, values);
+            console.info('Estudiante ' + proceso[1] + ' registrado con exito');
+        }finally{
+            client.release();
+        }
+    }catch(err){
+        const { code } = err;
+        console.error('Error al registrar estudiante: ', err);
+        console.error('Cidogo de error ', code);
+    }finally{
+        pool.end();
+    }
 };//para agregar un usuario ejemplo -> node server.js nuevo 'Frank' '6' 'Java' 'alto'
+
+// En este código se utiliza pool.connect() para obtener un cliente de la pool antes de ejecutar la consulta. 
+// Luego, en el bloque finally se comprueba si el cliente existe y, en caso afirmativo, se libera utilizando client.release(). 
+// También se maneja cualquier error que pueda ocurrir durante la ejecución de la consulta.
 
 
 const consultarRut = async()=>{
@@ -53,7 +70,7 @@ const editar = async()=>{
     const values = [proceso[1], proceso[2], proceso[3], proceso[4], proceso[5]];
     const result = await pool.query(text, values);
     console.info('Estudiante ' + proceso[1] + ' actualizado con exito');
-}// para editar ejemplo -> node server.js editar 'Bianca' '6' 'Angelo' 'medio' '6'
+}// para editar ejemplo -> node server.js editar 'Luis' '6' 'Bootstrap' 'medio' '1'
                                                 //nombre, rut, curso, nivel, id
 
 
