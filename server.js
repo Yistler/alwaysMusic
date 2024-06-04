@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const { Pool } = require('pg');
 const config = {
     user: 'postgres',
@@ -153,19 +154,19 @@ switch(proceso[0]){
     break;
 
     default: 
-    console.log("Error de solicitud:");
-    console.info("Solicitud: Para agregar");
-    console.info("node server.js nuevo 'Antonio' '12.222.222-2' 'JavaScript' 'Alto'");
+    console.log(chalk.bgRed("Error de solicitud:"));
+    console.info(chalk.bgGreen("Solicitud: Para agregar"));
+    console.info(chalk.bgWhite("node server.js nuevo 'Antonio' '12.222.222-2' 'JavaScript' 'Alto'"));
     console.log("----------------------------------------------------------------------------");
-    console.info("Solicitud: Para consultar por rut");
-    console.info("node server.js rut - '12.222.222-2'");
+    console.info(chalk.bgGreen("Solicitud: Para consultar por rut"));
+    console.info(chalk.bgWhite("node server.js rut - '12.222.222-2'"));
     console.log("-----------------------------------------------------------------------------");
-    console.info("Solicitud: Para editar");
-    console.info("node server.js editar 'Luis' '14.444.444-4' 'Bootstrap' 'medio' 'id'");
+    console.info(chalk.bgGreen("Solicitud: Para editar"));
+    console.info(chalk.bgWhite("node server.js editar 'Luis' '14.444.444-4' 'Bootstrap' 'medio' 'id'"));
     console.log("-----------------------------------------------------------------------------");
-    console.info("Solicitud para consultar todo");
-    console.info("node server.js consulta");
+    console.info(chalk.bgGreen("Solicitud para consultar todo"));
+    console.info(chalk.bgWhite("node server.js consulta"));
     console.log("-----------------------------------------------------------------------------");
-    console.info("Solicitud para eliminar por rut");
-    console.info("node server.js eliminar - '12.222.222-2'");
+    console.info(chalk.bgGreen("Solicitud para eliminar por rut"));
+    console.info(chalk.bgWhite("node server.js eliminar - '12.222.222-2'"));
 }
