@@ -1,3 +1,19 @@
+## Always Music descripcion
+**Esta aplicación ofrece una forma simple de administrar una lista de estudiantes utilizando una base de datos PostgreSQL, todo desde la línea de comandos.**
+
+**1. Conexión a la Base de Datos:** La aplicación se conecta a una base de datos PostgreSQL utilizando la biblioteca pg de Node.js.
+
+**2. Operaciones CRUD** 
++ Crear: Agregar un nuevo estudiante con nombre, rut, curso y nivel.
++ Leer: Consultar todos los estudiantes o buscar uno por su rut.
++ Actualizar: Modificar la información de un estudiante por su id, cambiando nombre, rut, curso o nivel.
++ Eliminar: Eliminar un estudiante por su rut.
+
+**3. Interfaz de Línea de Comandos (CLI):** La aplicación se ejecuta desde la línea de comandos y acepta diferentes comandos y argumentos para realizar las operaciones mencionadas anteriormente.
+
+**4. Manejo de Errores:** La aplicación maneja errores de conexión a la base de datos, consultas fallidas y otros posibles errores, mostrando mensajes de error claros en la consola.
+
+
 ## Base de datos
 ```sql
     CREATE DATABASE always_music;

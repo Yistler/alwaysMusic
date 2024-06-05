@@ -1,11 +1,11 @@
 const chalk = require('chalk');
 const { Pool } = require('pg');
 const config = {
-    user: 'postgres',
-    password: '1234',
+    user: 'postgres',//reemplazar por usuario de postgres
+    password: '1234',//reemplazar por password
     host: '127.0.0.1',
     port: '5432',
-    database: 'always_music',
+    database: 'always_music',//reemplazar nombre de BD
     max: 20,
     min: 2,
     idleTimeoutMillis: 20000,
